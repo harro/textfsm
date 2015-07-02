@@ -136,7 +136,8 @@ One or more 'Value' lines are used to describe each column that will be in the r
 Each Value line is of the following format:
 
 ```
-*Value* [option[,option...]] name regex```
+*Value* [option[,option...]] name regex
+```
 
 | **Keyword** | **Type** | **Description** |
 |:------------|:---------|:----------------|
@@ -152,7 +153,6 @@ After the Value definitions, the State definitions are described. Each state def
 A state definition is of the following format:
 
 ```
-
 _stateName
 *^*rule
 *^*rule...
@@ -189,7 +189,6 @@ Each state definition consists of a list of one or more rules. The FSM reads a l
 Rules are of the following format:
 
 ```
-
 *^*_regex_ [*->* _action_]
 ```
 
@@ -267,6 +266,5 @@ There is a special action 'Error'. This action will terminate all processing and
 The syntax for this action is:
 
 ```
-
 *^*_regex_ *-> Error* [_word|"string"_]
 ```
