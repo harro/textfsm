@@ -32,7 +32,7 @@ In our example there have been defined two optional columns for the attributes (
 
 ## Using the library ##
 
-```
+```python
 import clitable
 
 # Read in some example command outputs.
@@ -60,7 +60,7 @@ print cli_table
 ```
 
 The command column in the index file uses the special **[[ ]]** syntax for variable length command completion.
-```
+```python
 # Incomplete command strings are supported.
 attributes['Command'] = 'sh vers'
 
@@ -72,7 +72,7 @@ print cli_table
 
 CliTables with identical column names can be added together.
 
-```
+```python
 ct = cli_table + cli_table
 print ct
 >>> Chassis, Model, Software, Image
@@ -82,7 +82,7 @@ print ct
 
 CliTables are built upon a TextTable object, and can use all the features in that class.
 
-```
+```python
 ct.Append(('E1200', 'E1200', '7.7.2.2', 'flash://FTOS-EF-7.7.2.2.bin'))
 print ct.FormattedTable()
 >>>  Chassis  Model  Software  Image                       
