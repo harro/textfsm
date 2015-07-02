@@ -127,7 +127,7 @@ The template file consists of two top level sections.
   * The 'Value' definitions, which describe the columns of data to extract.
   * One or more 'State' definitions, describing the various states of the engine whilst parsing data.
 
-A line is considered a comment if it starts with any optional white space then a hash i.e matches regular expression: **"^\s**#"**.**
+A line is considered a comment if it starts with any optional white space then a hash i.e matches regular expression: **"^\s#"**.
 
 ### Value definitions ###
 
@@ -136,7 +136,7 @@ One or more 'Value' lines are used to describe each column that will be in the r
 Each Value line is of the following format:
 
 ```
-*Value* [option[,option...]] name regex
+Value [option[,option...]] name regex
 ```
 
 | **Keyword** | **Type** | **Description** |
@@ -153,10 +153,10 @@ After the Value definitions, the State definitions are described. Each state def
 A state definition is of the following format:
 
 ```
-_stateName
-*^*rule
-*^*rule...
-_
+stateName
+^rule
+^rule...
+
 ```
 
 Multiple state definitions are to be separated by at least one blank line. Rules are described on consecutive lines immediately following the state name and must be indented by white space and a carat ('^').
@@ -189,7 +189,7 @@ Each state definition consists of a list of one or more rules. The FSM reads a l
 Rules are of the following format:
 
 ```
-*^*_regex_ [*->* _action_]
+^regex [-> action]
 ```
 
 _regex_ is a regular expression compared against input lines. The match is performed from the start of the input line, so the carat ('^') although implicit, is required syntax as a reminder of this behavior.
@@ -234,7 +234,7 @@ If actions are not described i.e. no '->', then the default implicit action is *
 #### Line Actions ####
 
 | **Line Actions** | |
-|:-----------------|:|
+|:-----------------|:----------|
 | **Action**       | **Description** |
 | **Next**         | Finish with the input line, read in the next and start matching again from the start of the state. This is the default behavior if no line action is specified. |
 | **Continue**     | Retain the current line and do not resume matching from the first rule of the state. Continue processing rules as if a match did not occur (value assignments still occur). |
@@ -244,7 +244,7 @@ If actions are not described i.e. no '->', then the default implicit action is *
 After the line action is the optional record action, these are separated by a full stop '.'.
 
 | **Record Actions** | |
-|:-------------------|:|
+|:-------------------|:-----------|
 | **Action**         | **Description** |
 | **NoRecord**       | Do nothing. This is the default behavior if no record action is specified. |
 | **Record**         | Record the values collected so far as a row in the return data. Non Filldown values are cleared. Note: No record will be output if there are any 'Required' values that are unassigned. |
@@ -266,5 +266,5 @@ There is a special action 'Error'. This action will terminate all processing and
 The syntax for this action is:
 
 ```
-*^*_regex_ *-> Error* [_word|"string"_]
+^regex -> Error [_word|"string"_]
 ```
