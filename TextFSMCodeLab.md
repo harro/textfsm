@@ -703,7 +703,7 @@ By itself, the FSM is not entirely useful. It's intended to be used by Python pr
 
 To start, create a new file called 'routes.py', and add the following into it:
 
-```
+```python
 #!/usr/bin/python2.4
 
 import textfsm
